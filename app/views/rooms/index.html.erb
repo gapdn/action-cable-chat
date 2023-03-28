@@ -1,0 +1,27 @@
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-3'>
+        <h5> Hi <%= @current_user.username %> </h5>
+        <h4> Rooms </h4>
+        <%= render partial: 'new_form', locals: { room: @room } %>
+        <div>
+          <%= turbo_stream_from 'rooms' %>
+          <div id='rooms'>
+            <%= render @rooms %>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-9 bg-dark text-light'>
+        <% if @current_room %>
+          <h4 class="text-center"> <%= @current_room.name %> </h4>
+        <% end %>
+        <%= turbo_stream_from @current_room %>
+        <% if @messages %>
+          <div id="custom_message_target">
+            <%= render @messages %>
+          </div>
+          <%= render partial: 'messages/new_form', locals: { current_room: @current_room, message: @message } %>
+        <% end %>
+      </div>
+    </div>
+  </div>

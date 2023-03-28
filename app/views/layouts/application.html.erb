@@ -16,4 +16,15 @@
     <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
+
+    <style>
+      <%= ".msg-#{current_user&.id}" %> {
+        background-color: #007bff !important;
+        padding: 10px;
+      }
+      <%= ".cont-#{current_user&.id}" %> {
+        display: flex;
+        justify-content: flex-end
+      }
+  </style>
 </html>
